@@ -12,6 +12,7 @@ export class AuthService {
     if (typeof window !== 'undefined') {
       this.token = localStorage.getItem('token') || '';
       this.fullName = localStorage.getItem('fullName') || '';
+      this.profile = localStorage.getItem('profile') || '';
     }
   }
 
@@ -20,6 +21,7 @@ export class AuthService {
   email=''
   token=''
   fullName=''
+  profile=''
 
   clientSignup(data:any):Observable<any>{
     const signupApi=`${this.api}/client/signup`
