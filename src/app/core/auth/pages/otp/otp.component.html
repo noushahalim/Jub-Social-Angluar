@@ -1,0 +1,27 @@
+<div class="h-screen w-screen flex justify-center items-center font">
+    <div class="h-[500px] w-[90%] sm:w-[80%] md:w-[40%] lg:w-[30%] xl:w-[20%] bg-gradient-to-b from-green-300 via-yellow-100 to-pink-500 rounded-[20px]">
+        <div class="h-[40%] w-full bg-[] rounded-tl-[20px] rounded-tr-[20px] flex justify-center items-center ">
+            <img src="images/logo/JubSocialLogo.png" alt="" class="h-[60%] w-auto" >
+        </div>
+        <div class="h-auto w-full bg-[] flex flex-col gap-2 mt-4">
+            <p class="w-full text-center text-[20px] font-semibold">OTP verification</p>
+            <p class="w-full text-center text-[12px] font-bold ">Enter the otp sent to {{email}}<span class="font-semibold text-[gray]"></span></p>
+        </div>
+        <form >
+            <div class="h-auto w-full bg-[] flex gap-2 justify-center mt-4 ">
+                <ng-otp-input  (onInputChange)="onOtpChange($event)"  [config]="{length:4,allowNumbersOnly:true}" ></ng-otp-input>
+            </div>
+            </form>
+
+        <p class="w-full bg-[] text-[13px] text-center mt-2">Don't you recieve the otp? 
+            @if(isButtonEnabled){<span class="text-[blue] cursor-pointer" (click)="handleClick()">Resent otp</span>}
+            @if(!isButtonEnabled){<span class="text-[red]">{{ countdown }} seconds</span>}
+        </p>
+        @if(backendError){
+            <p class="w-full text-red-600 text-[13px] text-center mt-2">{{backendError}}</p>
+        }
+            <div class="w-full flex items-center justify-center mt-6">
+        <button class="h-[40px] w-[90%] bg-[blue] text-white rounded-[20px]" (click)="onSubmit()">Verify</button>
+            </div>
+    </div>
+</div>
