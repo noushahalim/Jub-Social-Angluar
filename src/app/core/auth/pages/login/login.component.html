@@ -1,0 +1,48 @@
+<div class="w-full min-h-screen bg-purple-200 flex items-center justify-center p-1">
+  <div class="w-full max-w-[90%] lg:max-w-[80%] bg-gradient-to-b from-green-300 via-yellow-100 to-pink-500 relative rounded-xl overflow-hidden flex flex-col-reverse lg:flex-row-reverse">
+
+    <div class="w-full lg:w-7/12 p-3 order-2 lg:order-1">
+      <div class="py-8 lg:py-16 w-full flex flex-col items-center justify-center">
+        <img src="images/logo/JubSocialLogo.png" alt="" class="h-32 lg:h-48 w-auto rounded-2xl">
+        <img src="images/logo/JubSocialTitle.png" alt="" class="h-32 lg:h-48 w-auto rounded-2xl">
+      </div>
+    </div>
+
+    <div class="w-full lg:w-5/12 bg-white p-6 order-1 lg:order-2">
+      <div class="mt-6 lg:mt-5 mx-4 lg:ml-[10%]">
+        <p class="font-bold text-xl lg:text-2xl">Hello!</p>
+        <p class="font-medium">Login here</p>
+      </div>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+        <div class="w-full lg:w-[90%] flex flex-col gap-4 mx-auto lg:ml-[10%] mt-8 lg:mt-12">
+
+          <mat-form-field class="w-full lg:w-5/6 border-0">
+            <mat-label>Email</mat-label>
+            <input type="email" matInput placeholder="" value="" formControlName="email">
+            <mat-error *ngIf="loginForm.get('email')?.hasError('required')">
+              Email is required
+            </mat-error>
+            <mat-error *ngIf="loginForm.get('email')?.hasError('email')">
+              Please enter a valid email address
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="w-full lg:w-5/6 border-0">
+            <mat-label>Password</mat-label>
+            <input type="password" matInput placeholder="" value="" formControlName="password">
+            <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+              Password is required
+            </mat-error>
+          </mat-form-field>
+
+        </div>
+
+        <button type="submit" class="w-full lg:w-[50%] min-h-10 mx-auto block lg:ml-[25%] mt-2 bg-blue-700 text-white font-bold rounded-md transition duration-300 ease-in-out hover:-translate-y-1" [disabled]="!loginForm.valid">Login</button>
+      </form>
+      <p class="text-end relative top-2 right-16 text-gray-700 cursor-pointer" routerLink="/auth/forgotPassword">Forgot password ?</p>
+      <p class="text-center relative top-3 text-red-600">{{backendError}}</p>
+      <p class="text-blue-600 text-center relative top-3 hover:scale-110 transition duration-300 ease-in-out">If you don't have an account? <span class="font-bold cursor-pointer" routerLink="/auth/register">Signup</span></p>
+    </div>
+  </div>
+</div>
